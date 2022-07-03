@@ -24,7 +24,7 @@ User.init({
   timestamps: false,
 });
 
-User.hasMany(Task, { foreignKey: 'userId', as: 'userId' });
-Task.belongsTo(User, { foreignKey: 'userId', as: 'userId' });
+User.hasMany(Task, { foreignKey: 'userId', as: 'user' });
+Task.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
 export default User;
