@@ -1,4 +1,5 @@
 import * as express from 'express';
+import ErrorMiddleware from './middlewares/ErrorMiddleware';
 import RegisterRouter from './routes/RegisterRouter';
 
 export default class App {
@@ -30,5 +31,7 @@ export default class App {
     this.app.use(express.json());
 
     this.app.use('/register', RegisterRouter);
+
+    this.app.use(ErrorMiddleware);
   }
 }
