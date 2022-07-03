@@ -4,6 +4,10 @@ import UserMiddleware from "../middlewares/UserMiddleware";
 
 const router = Router();
 
-router.post('/', UserMiddleware.checkEmail, UserController.register);
+router.post('/',
+  UserMiddleware.registerValidate,
+  UserMiddleware.checkEmail,
+  UserController.register
+);
 
 export default router;
