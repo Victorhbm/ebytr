@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../database/models/User";
 import { StatusCodes } from 'http-status-codes';
+import UserSchema from "../schemas/UserSchema";
 
 class UserMiddleware {
   public async checkEmail(req: Request, res: Response, next: NextFunction) {
@@ -14,6 +15,14 @@ class UserMiddleware {
 
     next();
   };
+
+  public registerValidate(req: Request, res: Response, next: NextFunction) {
+    const { error } = UserSchema.registerSchema.validate(req.body);
+
+    if (error) throw error;
+
+    next();
+  }
 };
 
 export default new UserMiddleware();
