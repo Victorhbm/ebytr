@@ -1,4 +1,5 @@
 import * as express from 'express';
+import RegisterRouter from './routes/RegisterRouter';
 
 export default class App {
   public app: express.Express;
@@ -28,8 +29,6 @@ export default class App {
   private routes():void {
     this.app.use(express.json());
 
-    this.app.get('/teste', (_req, res) => {
-      res.status(200).send('funcionou');
-    })
+    this.app.use('/register', RegisterRouter);
   }
 }
