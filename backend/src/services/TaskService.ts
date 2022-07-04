@@ -18,6 +18,10 @@ class TaskService {
 
     return taskCreated;
   };
+
+  public async deleteTask(id: number) {
+    await Task.destroy({ where: { id } });
+  }
 };
 
 export default new TaskService();
