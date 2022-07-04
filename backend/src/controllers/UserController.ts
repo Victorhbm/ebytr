@@ -11,8 +11,21 @@ class UserController {
     } catch (error) {
       console.log(error);
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
-    }
-  }
+    };
+  };
+
+  public async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body;
+
+      const { code, body } = await UserService.login(email, password);
+
+      return res.status(code).json(body);
+    } catch (error) {
+      console.log(error);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
+    };
+  };
 }
 
 export default new UserController();
