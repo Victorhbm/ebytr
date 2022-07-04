@@ -11,7 +11,7 @@ class TaskService {
     const taskCreated = await Task.create({
       task,
       userId,
-      status: 'Em andamento',
+      status: 'Pendente',
       createdAt: new Date(),
       updatedAt: new Date(),
     });
