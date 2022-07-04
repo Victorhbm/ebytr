@@ -29,6 +29,19 @@ class TaskController {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
     };
   };
+
+  public async deleteTask(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      await TaskService.deleteTask(+id);
+
+      return res.status(StatusCodes.OK).send();
+    } catch (error) {
+      console.log(error);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
+    };
+  };
 }
 
 export default new TaskController();
