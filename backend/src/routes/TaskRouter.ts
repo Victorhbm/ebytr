@@ -5,20 +5,24 @@ import TaskMiddleware from "../middlewares/TaskMiddleware";
 
 const router = Router();
 
+router.use(AuthMiddleware);
+
 router.get('/',
-  AuthMiddleware,
   TaskController.getTasksByUserId
 );
 
 router.post('/',
   TaskMiddleware.taskCreateBodyValidate,
-  AuthMiddleware,
   TaskController.createTask
 );
 
 router.delete('/:id',
-  AuthMiddleware,
   TaskController.deleteTask
+);
+
+router.patch('/:id',
+  TaskMiddleware.taskUpdateBodyValidate,
+  TaskController.updateTaskStatus
 );
 
 export default router;
