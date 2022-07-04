@@ -12,7 +12,7 @@ class TaskController {
       return res.status(StatusCodes.OK).json(tasks);
     } catch (error) {
       console.log(error);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Server error!' });
     };
   };
 
@@ -26,7 +26,7 @@ class TaskController {
       return res.status(StatusCodes.CREATED).json(taskCreated);
     } catch (error) {
       console.log(error);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Server error!' });
     };
   };
 
@@ -36,10 +36,24 @@ class TaskController {
 
       await TaskService.deleteTask(+id);
 
-      return res.status(StatusCodes.OK).send();
+      return res.status(StatusCodes.NO_CONTENT).send();
     } catch (error) {
       console.log(error);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Server error!' });
+    };
+  };
+
+  public async updateTaskStatus(req: Request, res: Response) {
+    try {
+      const { status } = req.body;
+      const { id } = req.params;
+
+      const { code, message } = await TaskService.updateTaskStatus(status, +id);
+
+      return res.status(code).json({ message });
+    } catch (error) {
+      console.log(error);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Server error!' });
     };
   };
 }
