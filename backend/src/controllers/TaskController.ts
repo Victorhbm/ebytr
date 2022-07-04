@@ -13,8 +13,22 @@ class TaskController {
     } catch (error) {
       console.log(error);
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
-    }
-  }
+    };
+  };
+
+  public async createTask(req: Request, res: Response) {
+    try {
+      const { task, user } = req.body;
+      const { id } = user.data;
+
+      const taskCreated = await TaskService.createTask(task, id);
+
+      return res.status(StatusCodes.CREATED).json(taskCreated);
+    } catch (error) {
+      console.log(error);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Erro no servidor!' });
+    };
+  };
 }
 
 export default new TaskController();
