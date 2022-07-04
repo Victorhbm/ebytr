@@ -1,3 +1,4 @@
+import { StatusCodes } from "http-status-codes";
 import Task from "../database/models/Task";
 
 class TaskService {
@@ -21,6 +22,16 @@ class TaskService {
 
   public async deleteTask(id: number) {
     await Task.destroy({ where: { id } });
+  }
+
+  public async updateTaskStatus(status: string, id: number) {
+    const findTask = await Task.findOne({ where: { id } });
+
+    if (!findTask) return { code: StatusCodes.NOT_FOUND, message: 'Task not found' };
+
+    await Task.update({ status }, { where: { id } });
+
+    return { code: StatusCodes.OK, message: 'Successfully updated' }
   }
 };
 
