@@ -6,6 +6,11 @@ class UserSchema {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
   });
+
+  public loginSchema = Joi.object({
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+  })
 };
 
 export default new UserSchema();
