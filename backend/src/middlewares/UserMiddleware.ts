@@ -16,13 +16,21 @@ class UserMiddleware {
     next();
   };
 
-  public registerValidate(req: Request, res: Response, next: NextFunction) {
+  public registerValidate(req: Request, _res: Response, next: NextFunction) {
     const { error } = UserSchema.registerSchema.validate(req.body);
 
     if (error) throw error;
 
     next();
-  }
+  };
+
+  public loginValidate(req: Request, _res: Response, next: NextFunction) {
+    const { error } = UserSchema.loginSchema.validate(req.body);
+
+    if (error) throw error;
+
+    next();
+  };
 };
 
 export default new UserMiddleware();
