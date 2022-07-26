@@ -3,6 +3,7 @@ import ErrorMiddleware from './middlewares/ErrorMiddleware';
 import RegisterRouter from './routes/RegisterRouter';
 import LoginRouter from './routes/LoginRouter';
 import TaskRouter from './routes/TaskRouter';
+import * as cors from 'cors';
 
 export default class App {
   public app: express.Express;
@@ -31,6 +32,7 @@ export default class App {
 
   private routes():void {
     this.app.use(express.json());
+    this.app.use(cors());
 
     this.app.use('/register', RegisterRouter);
     this.app.use('/login', LoginRouter);
