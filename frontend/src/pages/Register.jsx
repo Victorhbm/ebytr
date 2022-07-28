@@ -1,5 +1,7 @@
+import { useContext, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from "../components/ErrorMessage";
+import AppContext from "../context/AppContext";
 import { createUser } from "../services/apiRequests";
 
 function Register() {
@@ -7,6 +9,8 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const { setUserData, setIsLogged } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,15 +20,17 @@ function Register() {
     if (message) {
       setErrorMessage(message);
     } else {
+      const userData = { ...user, token };
+      
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUserData(userData);
+      
+      setIsLogged(true);
       setErrorMessage('');
-      localStorage.setItem('user', JSON.stringify({
-        data: user,
-        token
-      }));
-
       setName('');
       setEmail('');
       setPassword('');
+      navigate('/');
     }
   }
 
