@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from "../components/ErrorMessage";
 import { createUser } from "../services/apiRequests";
 
@@ -73,6 +73,8 @@ function Register() {
       </form>
 
       <ErrorMessage message={ errorMessage } />
+
+      <p>Already have an account? <Link to="/login">Log In</Link></p>
     </div>
   );
 }
