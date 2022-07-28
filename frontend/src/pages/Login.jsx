@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from "../components/ErrorMessage";
 import AppContext from "../context/AppContext";
 import { login } from "../services/apiRequests";
@@ -69,6 +69,8 @@ function Login() {
       </form>
 
       <ErrorMessage message={ errorMessage } />
+
+      <p>Don&apos;t have an account? <Link to="/register">Sign Up</Link></p>
     </div>
   );
 }
