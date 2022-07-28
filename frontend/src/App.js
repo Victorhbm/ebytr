@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AppContext from './context/AppContext.js';
 import Login from './pages/Login.jsx';
@@ -6,8 +6,7 @@ import Main from './pages/Main.jsx';
 import Register from './pages/Register.jsx';
 
 function App() {
-  const { setUserData } = useContext(AppContext);
-  const [isLogged, setIsLogged] = useState(true);
+  const { setUserData, isLogged, setIsLogged } = useContext(AppContext);
 
   const getUserData = useCallback(() => {
     const getUserFromLocalStorage = JSON.parse(localStorage.getItem('user'));
@@ -18,7 +17,7 @@ function App() {
     } else {
       setIsLogged(false);
     }
-  }, [setUserData]);
+  }, [setUserData, setIsLogged]);
 
   useEffect(() => {
     getUserData();
