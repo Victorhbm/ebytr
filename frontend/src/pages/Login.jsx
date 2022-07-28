@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const { setUserData } = useContext(AppContext);
+  const { setUserData, setIsLogged } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,20 +19,16 @@ function Login() {
     if (message) {
       setErrorMessage(message);
     } else {
-      setErrorMessage('');
-      localStorage.setItem('user', JSON.stringify({
-        data: user,
-        token
-      }));
+      const userData = { ...user, token };
 
-      setUserData({
-        data: user,
-        token
-      })
-      console.log('entrou');
-      navigate('/');
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUserData(userData);
+      
+      setIsLogged(true);
+      setErrorMessage('');
       setEmail('');
       setPassword('');
+      navigate('/');
     }
   }
 
