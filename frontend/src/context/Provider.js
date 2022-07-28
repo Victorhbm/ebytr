@@ -4,10 +4,13 @@ import AppContext from './AppContext';
 
 function Provider({ children }) {
   const [userData, setUserData] = useState({});
+  const [isLogged, setIsLogged] = useState(true);
 
   const contextValue = {
     userData,
-    setUserData
+    setUserData,
+    isLogged,
+    setIsLogged,
   };
 
   return (
