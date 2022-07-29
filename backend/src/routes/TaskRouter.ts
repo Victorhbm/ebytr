@@ -20,9 +20,14 @@ router.delete('/:id',
   TaskController.deleteTask
 );
 
-router.patch('/:id',
-  TaskMiddleware.taskUpdateBodyValidate,
+router.patch('/:id/status',
+  TaskMiddleware.updateStatusBodyValidate,
   TaskController.updateTaskStatus
+);
+
+router.patch('/:id/name',
+  TaskMiddleware.updateTaskNameBodyValidate,
+  TaskController.updateTaskName
 );
 
 export default router;
