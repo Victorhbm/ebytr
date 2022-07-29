@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
 function Header() {
-  const { userData: { name } } = useContext(AppContext);
+  const { userData: { name }, setUserData } = useContext(AppContext);
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
+    setUserData({});
     navigate('/login');
   };
 
