@@ -5,12 +5,15 @@ import AppContext from './AppContext';
 function Provider({ children }) {
   const [userData, setUserData] = useState({});
   const [isLogged, setIsLogged] = useState(true);
+  const [tasks, setTasks] = useState([]);
 
   const contextValue = {
     userData,
     setUserData,
     isLogged,
     setIsLogged,
+    tasks,
+    setTasks,
   };
 
   return (
