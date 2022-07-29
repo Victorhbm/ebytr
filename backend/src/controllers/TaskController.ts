@@ -56,6 +56,20 @@ class TaskController {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Server error!' });
     };
   };
+
+  public async updateTaskName(req: Request, res: Response) {
+    try {
+      const { task } = req.body;
+      const { id } = req.params;
+
+      const { code, message } = await TaskService.updateTaskName(task, +id);
+
+      return res.status(code).json({ message });
+    } catch (error) {
+      console.log(error);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Server error!' });
+    };
+  };
 }
 
 export default new TaskController();
