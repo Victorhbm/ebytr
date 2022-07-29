@@ -10,8 +10,16 @@ class TaskMiddleware {
     next();
   };
 
-  public taskUpdateBodyValidate(req: Request, _res: Response, next: NextFunction) {
-    const { error } = TaskSchema.updateTaskStatusSchema.validate(req.body);
+  public updateStatusBodyValidate(req: Request, _res: Response, next: NextFunction) {
+    const { error } = TaskSchema.updateStatusSchema.validate(req.body);
+
+    if (error) throw error;
+
+    next();
+  };
+
+  public updateTaskNameBodyValidate(req: Request, _res: Response, next: NextFunction) {
+    const { error } = TaskSchema.updateTaskNameSchema.validate(req.body);
 
     if (error) throw error;
 
