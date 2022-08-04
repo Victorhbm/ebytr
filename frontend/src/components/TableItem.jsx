@@ -22,14 +22,18 @@ function TableItem({ id, task, status, createdAt }) {
     getTasks();
   };
 
-  const handleKeyUp = async (e) => {
-    const key = e.which || e.keyCode;
-
-    if (key == 13) {
+  const onUpdateTaskName = async () => {
       await updateTaskName(id, userData.token, inputTask);
 
       setEditMode(false);
       getTasks();
+  }
+
+  const handleKeyUp = async (e) => {
+    const key = e.which || e.keyCode;
+
+    if (key == 13) {
+      await onUpdateTaskName();
     }
   };
 
@@ -64,9 +68,15 @@ function TableItem({ id, task, status, createdAt }) {
       </td>
       <td>{ correctDate.toLocaleDateString() }</td>
       <td>
-        <button type="button" onClick={ () => setEditMode(!editMode) }>
-          Edit
-        </button>
+        {editMode ? (
+          <button type="button" onClick={ onUpdateTaskName }>
+            Save
+          </button>
+        ) : (
+          <button type="button" onClick={ () => setEditMode(!editMode) }>
+            Edit
+          </button>
+        )}
       </td>
       <td>
         <button type="button" onClick={ onDeleteTask }>
