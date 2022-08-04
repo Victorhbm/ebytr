@@ -6,6 +6,7 @@ function Provider({ children }) {
   const [userData, setUserData] = useState({});
   const [isLogged, setIsLogged] = useState(true);
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const contextValue = {
     userData,
@@ -14,6 +15,8 @@ function Provider({ children }) {
     setIsLogged,
     tasks,
     setTasks,
+    filter,
+    setFilter,
   };
 
   return (
