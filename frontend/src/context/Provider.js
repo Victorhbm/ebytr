@@ -7,6 +7,8 @@ function Provider({ children }) {
   const [isLogged, setIsLogged] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('');
+  const [sortColumn, setSortColumn] = useState('id');
+  const [sortOrder, setSortOrder] = useState('ASC');
 
   const contextValue = {
     userData,
@@ -17,6 +19,10 @@ function Provider({ children }) {
     setTasks,
     filter,
     setFilter,
+    sortColumn,
+    setSortColumn,
+    sortOrder,
+    setSortOrder,
   };
 
   return (
