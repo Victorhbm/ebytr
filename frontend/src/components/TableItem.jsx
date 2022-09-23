@@ -50,24 +50,28 @@ function TableItem({ id, task, status, createdAt }) {
   };
 
   return (
-    <tr>
-      <td>
-        { editMode
-            ? <input
-                type="text"
-                value={ inputTask }
-                onChange={ (e) => setInputTask(e.target.value) }
-                onKeyUp={ handleKeyUp }
-              />
-            : task }
-      </td>
-      <td>
-        <button type="button" onClick={ onUpdateStatus }>
-          { status }
-        </button>
-      </td>
-      <td>{ correctDate.toLocaleDateString() }</td>
-      <td>
+    <div>
+      <div>
+        <div>
+          { editMode
+              ? <input
+                  type="text"
+                  value={ inputTask }
+                  onChange={ (e) => setInputTask(e.target.value) }
+                  onKeyUp={ handleKeyUp }
+                />
+              : task }
+        </div>
+        <div>
+          <button type="button" onClick={ onUpdateStatus }>
+            { status }
+          </button>
+
+          <p>{ correctDate.toLocaleDateString() }</p>
+        </div>
+      </div>
+      
+      <div>
         {editMode ? (
           <button type="button" onClick={ onUpdateTaskName }>
             Save
@@ -77,13 +81,12 @@ function TableItem({ id, task, status, createdAt }) {
             Edit
           </button>
         )}
-      </td>
-      <td>
+
         <button type="button" onClick={ onDeleteTask }>
           X
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
 
