@@ -33,40 +33,42 @@ function Login() {
   }
 
   return (
-    <div>
-      <form onSubmit={ (e) => handleSubmit(e) }>
-        <label htmlFor="input-email-login">
-          Email:
-          <input
-            type="email"
-            id="input-email-login"
-            name="input-email-login"
-            onChange={ (e) => setEmail(e.target.value) }
-            value={ email }
-          />
-        </label>
-
-        <label htmlFor="input-password-login">
-          Password:
-          <input
-            type="password"
-            id="input-password-login"
-            name="input-password-login"
-            onChange={ (e) => setPassword(e.target.value) }
-            value={ password }
-          />
-        </label>
-
-        <button
-          type="submit"
-        >
-          Send
-        </button>
-      </form>
-
-      <ErrorMessage message={ errorMessage } />
-
-      <p>Don&apos;t have an account? <Link to="/register">Sign Up</Link></p>
+    <div className="bg-accent h-screen text-base-100 flex justify-center items-center text-base	">
+      <section className="w-80 p-3">
+        <h1 className="text-center text-2xl mb-4">Log In</h1>
+        <form onSubmit={ (e) => handleSubmit(e) }>
+          <label htmlFor="input-email-login" className="block mb-2">
+            Email:
+            <input
+              type="email"
+              id="input-email-login"
+              name="input-email-login"
+              onChange={ (e) => setEmail(e.target.value) }
+              value={ email }
+              className="block w-full border-slate-500 rounded-md bg-accent input input-bordered input-sm mt-0.4"
+            /> 
+          </label>
+          <label htmlFor="input-password-login" className="block">
+            Password:
+            <input
+              type="password"
+              id="input-password-login"
+              name="input-password-login"
+              onChange={ (e) => setPassword(e.target.value) }
+              value={ password }
+              className="block w-full border-slate-500 rounded-md bg-accent input input-bordered input-sm mt-0.4"
+            />
+          </label>
+          <button
+            type="submit"
+            className="w-full btn-primary btn-sm rounded-md my-5"
+          >
+            Submit
+          </button>
+        </form>
+        <ErrorMessage message={ errorMessage } />
+        <p>Don&apos;t have an account? <Link to="/register">Sign Up</Link></p>
+      </section>
     </div>
   );
 }
