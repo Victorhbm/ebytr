@@ -1,5 +1,5 @@
 export const createUser = async (body) => {
-  const response = await fetch('http://localhost:3001/register', {
+  const response = await fetch('https://todolist-backend-production-5b17.up.railway.app/register', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -14,7 +14,7 @@ export const createUser = async (body) => {
 };
 
 export const login = async (body) => {
-  const response = await fetch('http://localhost:3001/login', {
+  const response = await fetch('https://todolist-backend-production-5b17.up.railway.app/login', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -29,7 +29,7 @@ export const login = async (body) => {
 };
 
 export const getAllTasks = async (token) => {
-  const response = await fetch('http://localhost:3001/tasks', {
+  const response = await fetch('https://todolist-backend-production-5b17.up.railway.app/tasks', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -44,7 +44,7 @@ export const getAllTasks = async (token) => {
 };
 
 export const createTask = async (body, token) => {
-  const response = await fetch('http://localhost:3001/tasks', {
+  const response = await fetch('https://todolist-backend-production-5b17.up.railway.app/tasks', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -60,7 +60,7 @@ export const createTask = async (body, token) => {
 };
 
 export const deleteTask = async (id, token) => {
-  await fetch(`http://localhost:3001/tasks/${id}`, {
+  await fetch(`https://todolist-backend-production-5b17.up.railway.app/tasks/${id}`, {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',
@@ -71,7 +71,7 @@ export const deleteTask = async (id, token) => {
 };
 
 export const updateTaskName = async (id, token, task) => {
-  await fetch(`http://localhost:3001/tasks/${id}/name`, {
+  await fetch(`https://todolist-backend-production-5b17.up.railway.app/tasks/${id}/name`, {
     method: 'PATCH',
     headers: {
       'Accept': 'application/json',
@@ -83,7 +83,7 @@ export const updateTaskName = async (id, token, task) => {
 };
 
 export const updateTaskStatus = async (id, token, status) => {
-  await fetch(`http://localhost:3001/tasks/${id}/status`, {
+  await fetch(`https://todolist-backend-production-5b17.up.railway.app/tasks/${id}/status`, {
     method: 'PATCH',
     headers: {
       'Accept': 'application/json',
