@@ -1,9 +1,9 @@
 import { useCallback, useContext, useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AppContext from './context/AppContext.js';
-import Login from './pages/Login.jsx';
+import Login from './pages/Login';
 import Main from './pages/Main.jsx';
-import Register from './pages/Register.jsx';
+import Register from './pages/Register';
 
 function App() {
   const { setUserData, isLogged, setIsLogged } = useContext(AppContext);
