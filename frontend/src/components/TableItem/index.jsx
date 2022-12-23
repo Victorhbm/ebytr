@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
-import AppContext from "../context/AppContext";
-import { deleteTask, getAllTasks, updateTaskName, updateTaskStatus } from "../services/apiRequests";
+import { FiEdit } from 'react-icons/fi';
+import { ImBoxAdd } from 'react-icons/im';
+import { TiDeleteOutline } from "react-icons/ti";
+import AppContext from "../../context/AppContext";
+import { deleteTask, getAllTasks, updateTaskName, updateTaskStatus } from "../../services/apiRequests";
+import { ButtonsContainer, Container, FirstLineContainer, SecondLineContainer, StatusButton, UpdateInput } from "./style";
 
 function TableItem({ id, task, status, createdAt }) {
   const { userData, setTasks } = useContext(AppContext);
@@ -50,11 +54,11 @@ function TableItem({ id, task, status, createdAt }) {
   };
 
   return (
-    <div>
-      <div>
+    <Container>
+      <FirstLineContainer>
         <div>
           { editMode
-              ? <input
+              ? <UpdateInput
                   type="text"
                   value={ inputTask }
                   onChange={ (e) => setInputTask(e.target.value) }
@@ -62,31 +66,31 @@ function TableItem({ id, task, status, createdAt }) {
                 />
               : task }
         </div>
-        <div>
-          <button type="button" onClick={ onUpdateStatus }>
-            { status }
-          </button>
 
-          <p>{ correctDate.toLocaleDateString() }</p>
-        </div>
-      </div>
+        <ButtonsContainer>
+          {editMode ? (
+            <button type="button" onClick={ onUpdateTaskName }>
+              <ImBoxAdd />
+            </button>
+          ) : (
+            <button type="button" onClick={ () => setEditMode(!editMode) }>
+              <FiEdit size={17}  />
+            </button>
+          )}
+          <button type="button" onClick={ onDeleteTask }>
+            <TiDeleteOutline size={19} />
+          </button>
+        </ButtonsContainer>
+      </FirstLineContainer>
       
-      <div>
-        {editMode ? (
-          <button type="button" onClick={ onUpdateTaskName }>
-            Save
-          </button>
-        ) : (
-          <button type="button" onClick={ () => setEditMode(!editMode) }>
-            Edit
-          </button>
-        )}
+      <SecondLineContainer>
+        <StatusButton $status={status} type="button" onClick={ onUpdateStatus }>
+          { status }
+        </StatusButton>
 
-        <button type="button" onClick={ onDeleteTask }>
-          X
-        </button>
-      </div>
-    </div>
+        <p>{ correctDate.toLocaleDateString() }</p>
+      </SecondLineContainer>
+    </Container>
   );
 }
 
