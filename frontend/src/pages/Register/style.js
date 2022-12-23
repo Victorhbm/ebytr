@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import tw from "tailwind-styled-components"
 
 export const PageContainer = tw.div`
-  bg-accent
+  bg-blue-four
   min-h-screen
   text-lg
-  text-base-100
+  text-blue-one
   flex
   justify-center
   items-center
@@ -47,36 +47,42 @@ export const Label = tw.label`
 `
 
 export const Input = tw.input`
+  py-[3px]
+  px-2
   block
   w-full
   border
   rounded-md
   mt-1
   input-sm
-  bg-accent
+  bg-blue-one
   focus:outline
-  outline-base-300/60
+  outline-blue-one/60
   outline-offset-2
+  text-blue-four
 
-  border-base-300
+  border-blue-one
 `
 
 export const Button = tw.button`
+  p-[3px]
   w-5/12
   text-lg
   block
   mx-auto
   text-center
-  btn-primary
-  btn-sm
   rounded-md
   my-7
 
   hover:scale-105
   duration-200
   ease-in-out
+
+  bg-blue-two
+  text-blue-four
+  font-semibold
 `
 
 export const StyledLink = tw(Link)`
-  link
+  underline
 `
