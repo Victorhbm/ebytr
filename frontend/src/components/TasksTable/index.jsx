@@ -1,7 +1,8 @@
 import { useCallback, useContext, useEffect } from "react";
-import AppContext from "../context/AppContext";
-import { getAllTasks } from "../services/apiRequests";
-import TableItem from "./TableItem";
+import AppContext from "../../context/AppContext";
+import { getAllTasks } from "../../services/apiRequests";
+import TableItem from "../TableItem";
+import { Container } from "./style";
 
 function TasksTable() {
   const { userData, setTasks, tasks, filter, sortColumn, sortOrder } = useContext(AppContext);
@@ -27,7 +28,7 @@ function TasksTable() {
   }, [getTasks]);
 
   return (
-    <section>
+    <Container>
       {tasks.length > 0 && sortTasks()
         .filter((t) => !filter || t.status === filter)
         .map(({ id, task, status, createdAt }) => (
@@ -39,7 +40,7 @@ function TasksTable() {
             createdAt={ createdAt }
           />
         ))}
-    </section>
+    </Container>
   );
 }
 
