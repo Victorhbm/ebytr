@@ -7,9 +7,9 @@
     "build": "/bin/sh tsc_eval.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
-    "prestart": "npm run build && npm run db:reset",
+    "prestart": "npm run build",
     "start": "node .",
-    "predev": "npm run build && npm run db:reset",
+    "predev": "npm run build",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts"
   },
   "author": "victorhbm",
