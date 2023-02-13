@@ -10,7 +10,7 @@ class UserMiddleware {
     const getUserByEmail = await User.findOne({ where: { email } })
 
     if (getUserByEmail) {
-      res.status(StatusCodes.CONFLICT).json({ message: 'E-mail já cadastrado!' })
+      return res.status(StatusCodes.CONFLICT).json({ message: 'E-mail já cadastrado!' })
     };
 
     next();
